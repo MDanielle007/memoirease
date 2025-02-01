@@ -13,17 +13,25 @@ const form = useForm({
 });
 
 const submit = () => {
-	form.post(route("diaries.store"),{
+	form.post(route("diaries.store"), {
 		onSuccess: () => {
 			form.reset();
 			toast.add({
-                severity: 'success',
-                summary: 'Success',
-                detail: 'Diary created successfully',
-                life: 3000
-            });
-		}
+				severity: "success",
+				summary: "Success",
+				detail: "Diary created successfully",
+				life: 3000,
+			});
+		},
 	});
+};
+
+const goBack = () => {
+	if (window.history.length > 1) {
+		window.history.back();
+	} else {
+		this.$inertia.visit("/");
+	}
 };
 </script>
 
@@ -41,13 +49,13 @@ const submit = () => {
 		<div class="py-2 sm:py-4 md:py-6">
 			<div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
 				<div class="flex justify-start mx-2 sm:mx-0">
-					<Link :href="route('dashboard')">
-						<Button
-							icon="pi pi-arrow-left"
-							label="Back"
-							class="tracking-widest"
-						/>
-					</Link>
+					<Button
+						variant="outlined"
+						@click="goBack"
+						icon="pi pi-arrow-left"
+						label="Back"
+						class="tracking-widest"
+					/>
 				</div>
 
 				<div

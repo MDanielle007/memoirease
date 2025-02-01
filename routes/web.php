@@ -8,19 +8,22 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-	return Inertia::render('Welcome', [
-		'canLogin' => Route::has('login'),
-		'canRegister' => Route::has('register'),
-		'laravelVersion' => Application::VERSION,
-		'phpVersion' => PHP_VERSION,
+	return Inertia::render('Auth/Login', [
+		'canResetPassword' => Route::has('password.request'),
+		'status' => session('status'),
 	]);
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/dashboard', [DiariesController::class, 'index'])->name('dashboard');
 	Route::resource('diaries', DiariesController::class);
+
 	Route::get('diary-entries/{diary}', [DiaryEntriesController::class,'index'])->name('diary-entries');
-	Route::resource('diary-entries', DiaryEntriesController::class);
+	Route::get('diary-entries/{diary}/create', [DiaryEntriesController::class,'create'])->name('diary-entries.create');
+	Route::get('diary-entries/{diary_entry}/edit', [DiaryEntriesController::class,'edit'])->name('diary-entries.edit');
+	Route::post('diary-entries', [DiaryEntriesController::class,'store'])->name('diary-entries.store');
+	Route::put('diary-entries/{diary_entry}', [DiaryEntriesController::class,'update'])->name('diary-entries.update');
+	Route::delete('diary-entries/{diary_entry}', [DiaryEntriesController::class,'destroy'])->name('diary-entries.destroy');
 
 });
 

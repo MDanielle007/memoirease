@@ -11,7 +11,7 @@ class UpdateDiaryEntriesRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateDiaryEntriesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'entry_title' => 'required|string|max:150',
+			'entry_date' => 'required|string',
+			'content' => 'required|string|max:150'
         ];
     }
 }

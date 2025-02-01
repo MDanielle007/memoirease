@@ -20,18 +20,18 @@ const form = useForm({
 	description: props.diary.description,
 });
 
-const title = ref(...[form.title])
+const title = ref(...[form.title]);
 
 const submit = () => {
-	form.put(route('diaries.update', props.diary.id),{
-		onSuccess:() => {
+	form.put(route("diaries.update", props.diary.id), {
+		onSuccess: () => {
 			toast.add({
-                severity: 'success',
-                summary: 'Success',
-                detail: 'Diary updated successfully',
-                life: 3000
-            });
-		}
+				severity: "success",
+				summary: "Success",
+				detail: "Diary updated successfully",
+				life: 3000,
+			});
+		},
 	});
 };
 </script>
@@ -52,6 +52,7 @@ const submit = () => {
 				<div class="flex justify-start mx-2 sm:mx-0">
 					<Link :href="route('dashboard')">
 						<Button
+							variant="outlined"
 							icon="pi pi-arrow-left"
 							label="Back"
 							class="tracking-widest"

@@ -15,7 +15,8 @@ class DiaryEntries extends Model
 		'diary_id',
 		'entry_date',
 		'entry_title',
-		'content'
+		'content',
+		'user_id'
 	];
 
 	public function diaries():BelongsTo

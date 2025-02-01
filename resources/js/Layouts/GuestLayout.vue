@@ -8,10 +8,14 @@ import { Link } from '@inertiajs/vue3';
     <div
         class="flex h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0 dark:bg-[#09090b]"
     >
-        <div>
+        <div class="flex flex-col justify-center items-center">
             <Link href="/">
                 <ApplicationLogo class="h-20 w-20 fill-current text-gray-500" />
             </Link>
+
+            <h1 class="text-2xl font-bold text-gray-800 dark:text-white sm:text-3xl">
+                MemoirEase
+            </h1>
         </div>
 
         <div
